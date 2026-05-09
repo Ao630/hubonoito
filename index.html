@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>父母の糸（ふぼのいと）| こころのカウンセリング</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #5a7a6a;
+    --sage-light: #8aaa96;
+    --sage-pale: #e8f0ec;
+    --cream: #faf8f4;
+    --warm-white: #ffffff;
+    --ink: #2a2a2a;
+    --ink-soft: #555550;
+    --ink-muted: #888882;
+    --gold: #b8955a;
+    --border: #ddd8ce;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ======= HEADER ======= */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(250, 248, 244, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .logo { line-height: 1.3; }
+  .logo-ja {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 400;
+    color: var(--sage);
+    letter-spacing: 4px;
+    display: block;
+  }
+  .logo-ruby {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--ink-muted);
+    font-weight: 300;
+    display: block;
+    margin-top: 2px;
+  }
+  nav {
+    display: flex;
+    gap: clamp(16px, 2.5vw, 32px);
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  nav a {
+    text-decoration: none;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 1px;
+    font-weight: 400;
+    cursor: default;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  @media (max-width: 600px) {
+    .header-inner { padding: 12px 20px; }
+    nav { display: none; }
+  }
+
+  /* ======= HERO ======= */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+    padding: 100px 40px 80px;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 50%, rgba(90,122,106,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 20% 70%, rgba(184,149,90,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-deco {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(360px, 38vw);
+    height: min(360px, 38vw);
+    border-radius: 50%;
+    border: 1px solid rgba(90,122,106,0.15);
+    pointer-events: none;
+  }
+  .hero-deco::before {
+    content: '';
+    position: absolute;
+    inset: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(90,122,106,0.1);
+  }
+  .hero-deco::after {
+    content: '';
+    position: absolute;
+    inset: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(90,122,106,0.07);
+  }
+  @media (max-width: 768px) {
+    .hero-deco { display: none; }
+    .hero { padding: 90px 24px 70px; }
+  }
+  .hero-content {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+  }
+  @media (min-width: 769px) {
+    .hero-content { margin-left: max(5%, calc(50% - 550px)); }
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--sage);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.25s forwards;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--sage);
+  }
+  .hero-desc {
+    font-size: clamp(13px, 1.8vw, 14px);
+    color: var(--ink-soft);
+    line-height: 2.1;
+    max-width: 460px;
+    margin-bottom: 36px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--sage);
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 14px 40px;
+    cursor: not-allowed;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.55s forwards;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .scroll-hint span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, var(--sage-light), transparent);
+    animation: scrollDrop 2s ease-in-out infinite;
+  }
+  @keyframes scrollDrop {
+    0%,100% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px); }
+  }
+
+  /* ======= POLICY ======= */
+  .policy-section {
+    background: var(--sage);
+    padding: clamp(60px, 8vw, 100px) clamp(24px, 5vw, 40px);
+    text-align: center;
+  }
+  .policy-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
+  .policy-text {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(18px, 3.5vw, 30px);
+    font-weight: 300;
+    line-height: 2;
+    letter-spacing: 3px;
+    color: #fff;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .policy-sub {
+    font-size: clamp(12px, 1.8vw, 15px);
+    color: rgba(255,255,255,0.7);
+    margin-top: 28px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    line-height: 2;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ======= SECTION COMMON ======= */
+  section {
+    padding: clamp(60px, 8vw, 100px) clamp(24px, 5vw, 40px);
+  }
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--sage);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .divider {
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  /* ======= SERVICES ======= */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+  .service-card {
+    background: var(--warm-white);
+    padding: clamp(28px, 4vw, 48px) clamp(20px, 3.5vw, 36px);
+  }
+  .service-num {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .service-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(15px, 2vw, 18px);
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  .service-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 2;
+    font-weight: 300;
+  }
+
+  /* ======= ABOUT ======= */
+  .about-section { background: var(--warm-white); }
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .about-layout { grid-template-columns: 1fr; }
+  }
+  .about-text p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 2.2;
+    font-weight: 300;
+    margin-bottom: 18px;
+  }
+  .fact-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .fact-row:first-child { border-top: 1px solid var(--border); }
+  .fact-label {
+    color: var(--ink-muted);
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 12px;
+    padding-top: 1px;
+  }
+  .fact-value {
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ======= APPLY ======= */
+  .apply-section {
+    background: #f2ede6;
+    text-align: center;
+  }
+  .apply-inner { max-width: 600px; margin: 0 auto; }
+  .apply-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 2.2;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+  .apply-note {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-bottom: 36px;
+    line-height: 1.9;
+  }
+  .apply-btn {
+    display: inline-block;
+    border: 1px solid var(--sage);
+    color: var(--sage);
+    font-size: 13px;
+    letter-spacing: 3px;
+    padding: 15px clamp(30px, 5vw, 56px);
+    cursor: not-allowed;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+  }
+  .apply-btn::after {
+    content: ' →';
+    font-size: 14px;
+  }
+  .apply-sub {
+    margin-top: 18px;
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 1px;
+  }
+
+  /* ======= FOOTER ======= */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    padding: clamp(36px, 5vw, 56px) clamp(24px, 5vw, 40px);
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+  .footer-ruby {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 20px;
+  }
+  .footer-info {
+    font-size: 12px;
+    line-height: 2;
+    letter-spacing: 1px;
+    font-weight: 300;
+  }
+  .footer-copy {
+    margin-top: 28px;
+    padding-top: 20px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-fiction {
+    margin-top: 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-ja">父母の糸</span>
+      <span class="logo-ruby">ふぼのいと</span>
+    </div>
+    <nav>
+      <a href="#">サービス</a>
+      <a href="#">私たちについて</a>
+      <a href="#">よくある質問</a>
+      <a href="#">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-deco"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Mental Health Counseling</p>
+    <h1 class="hero-title">
+      あなたの<em>こころ</em>に、<br>寄り添う場所。
+    </h1>
+    <p class="hero-desc">
+      父母の糸（ふぼのいと）は、精神的なつらさを抱える方々のために、専門のカウンセラーが丁寧に伴走するカウンセリングサービスです。一人ひとりのペースを大切にした、安心できる空間をご提供します。
+    </p>
+    <span class="hero-cta">お申し込みはこちら</span>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<div class="policy-section">
+  <p class="policy-label">Our Policy</p>
+  <p class="policy-text">
+    「光は常に正義と共にあり。<br>
+    皆が笑って暮らせる社会へ」
+  </p>
+  <p class="policy-sub">
+    私たちは、すべての人が安心して生きられる社会の実現を目指し、こころのケアを通じて社会に貢献してまいります。
+  </p>
+</div>
+
+<section>
+  <div class="section-inner">
+    <p class="section-label">Services</p>
+    <div class="divider"></div>
+    <h2 class="section-title">カウンセリングサービス</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <p class="service-num">01</p>
+        <h3 class="service-name">個人カウンセリング</h3>
+        <p class="service-desc">
+          うつ・不安障害・統合失調症など、さまざまな精神的困難を抱える方へ、臨床心理士・公認心理師が一対一でサポートします。週1回〜月1回のペースで継続的なケアをご提供します。
+        </p>
+      </div>
+      <div class="service-card">
+        <p class="service-num">02</p>
+        <h3 class="service-name">家族支援カウンセリング</h3>
+        <p class="service-desc">
+          ご家族が精神的な問題を抱えている場合、その周囲の方々のケアも重要です。家族全体のコミュニケーションや関係性の改善を、専門家がサポートします。
+        </p>
+      </div>
+      <div class="service-card">
+        <p class="service-num">03</p>
+        <h3 class="service-name">一般相談窓口</h3>
+        <p class="service-desc">
+          「最近気分が落ち込みがち」「ストレスで眠れない」など、精神科に通院中でない方も気軽にご相談いただけます。初回は無料相談を実施しております。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="section-inner">
+    <div class="about-layout">
+      <div>
+        <p class="section-label">About Us</p>
+        <div class="divider"></div>
+        <h2 class="section-title">私たちについて</h2>
+        <div class="about-text">
+          <p>
+            株式会社父母の糸（ふぼのいと）は、「精神的な困難を抱えるすべての人に、適切なサポートを届ける」という理念のもと設立されました。
+          </p>
+          <p>
+            私たちのカウンセラーは全員、国家資格を有する公認心理師・臨床心理士です。病院や福祉施設での豊富な臨床経験を持つ専門家が、丁寧かつ誠実に対応いたします。
+          </p>
+          <p>
+            精神科への通院中の方のサポートを主としつつ、「診断はないけれど、しんどい」という一般の方のご相談も広く受け付けております。
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="fact-row">
+          <span class="fact-label">会社名</span>
+          <span class="fact-value">株式会社 父母の糸（ふぼのいと）</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">設立</span>
+          <span class="fact-value">2014年4月</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">代表取締役</span>
+          <span class="fact-value">森山 綾乃</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">所在地</span>
+          <span class="fact-value">東京都新宿区西新宿2丁目</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">事業内容</span>
+          <span class="fact-value">精神科カウンセリング・心理支援サービス</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">スタッフ数</span>
+          <span class="fact-value">公認心理師・臨床心理士 14名</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">対応時間</span>
+          <span class="fact-value">平日 10:00〜19:00<br>土曜 10:00〜17:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="apply-section">
+  <div class="apply-inner">
+    <p class="section-label">Apply</p>
+    <div class="divider" style="margin: 0 auto 18px;"></div>
+    <h2 class="section-title">お申し込み・ご相談</h2>
+    <p class="apply-desc">
+      精神科に通院中の方も、そうでない方も、<br>
+      まずはお気軽にご相談ください。<br>
+      初回無料相談を随時受け付けております。
+    </p>
+    <p class="apply-note">
+      ※ お申し込みフォームに必要事項をご入力いただき送信してください。<br>
+      ※ 担当カウンセラーより3営業日以内にご連絡いたします。
+    </p>
+    <span class="apply-btn">お申し込みフォームへ</span>
+    <p class="apply-sub">※ 個人情報は厳正に管理いたします</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">父母の糸</div>
+  <div class="footer-ruby">ふぼのいと</div>
+  <div class="footer-info">
+    株式会社 父母の糸<br>
+    〒163-0000 東京都新宿区西新宿2丁目<br>
+    Tel: 03-XXXX-XXXX　|　Mail: info@fubonoito.example
+  </div>
+  <div class="footer-copy">
+    &copy; 2026 Fubonoito Inc. All Rights Reserved.
+  </div>
+  <div class="footer-fiction">
+    ※ このウェブサイトはフィクションです。掲載されている会社・人物・情報はすべて架空のものです。
+  </div>
+</footer>
+
+</body>
+</html>
