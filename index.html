@@ -225,41 +225,57 @@
     from { opacity: 0; transform: translateY(20px); }
   }
 
-  /* ======= POLICY ======= */
-  .policy-section {
-    background: var(--sage);
-    padding: clamp(60px, 8vw, 100px) clamp(24px, 5vw, 40px);
-    text-align: center;
-  }
-  .policy-label {
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 36px;
-    font-weight: 400;
-  }
-  .policy-text {
-    font-family: 'Noto Serif JP', serif;
-    font-size: clamp(18px, 3.5vw, 30px);
-    font-weight: 300;
-    line-height: 2;
-    letter-spacing: 3px;
-    color: #fff;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  .policy-sub {
-    font-size: clamp(12px, 1.8vw, 15px);
-    color: rgba(255,255,255,0.7);
-    margin-top: 28px;
-    letter-spacing: 1px;
-    font-weight: 300;
-    line-height: 2;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+ /* ======= POLICY ======= */
+.policy-section {
+  background: var(--sage);
+  padding: clamp(60px, 8vw, 100px) clamp(24px, 5vw, 40px);
+  text-align: center;
+}
+.policy-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 36px;
+  font-weight: 400;
+}
+.policy-text {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(18px, 3.5vw, 30px);
+  font-weight: 300;
+  line-height: 2;
+  letter-spacing: 3px;
+  color: #fff;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.policy-sub {
+  font-size: clamp(12px, 1.8vw, 15px);
+  color: rgba(255,255,255,0.7);
+  margin-top: 28px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  line-height: 2;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 追加：リンクを完全に馴染ませる設定 */
+.policy-link {
+  color: inherit !important;        /* 常に白（#fff）を維持 */
+  text-decoration: none !important; /* 下線を絶対に出さない */
+  cursor: text;                    /* カーソルもテキスト選択用の形のまま */
+  pointer-events: auto;            /* クリックは有効にする */
+}
+
+/* 訪問済み・ホバー時も変化させない */
+.policy-link:visited,
+.policy-link:hover,
+.policy-link:active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
 
   /* ======= SECTION COMMON ======= */
   section {
@@ -495,6 +511,7 @@
     「光は常に<a href="https://example.com" class="policy-link">正義</a>と共にあり。<br>
     皆が笑って暮らせる社会へ」
   </p>
+  
   <p class="policy-sub">
     私たちは、すべての人が安心して生きられる社会の実現を目指し、こころのケアを通じて社会に貢献してまいります。
   </p>
